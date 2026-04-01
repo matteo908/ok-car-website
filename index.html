@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OK CAR per le imprese | Il primo Assistente Personale dedicato agli Automobilisti</title>
+    
+    <!-- Tailwind CSS per lo styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter per il testo, Caveat per la tagline del logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B1B2B',   // Blu scuro del logo
+                            accent: '#3DE08F', // Verde menta del logo
+                            light: '#F3F4F6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Scrollbar personalizzata per la chat */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-card border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo Header -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="logo-header.jpg" alt="OK Car Logo" class="h-12 sm:h-14 w-auto mix-blend-multiply drop-shadow-sm">
+                </div>
+                <div class="hidden md:flex">
+                    <a href="#pricing" class="bg-brand-dark text-white px-6 py-3 rounded-full font-semibold hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-md">
+                        Proteggi i tuoi Colleghi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2 space-y-8 text-center lg:text-left z-10">
+            <img src="hero.jpg" alt="Logo OK Car" class="h-20 sm:h-28 w-auto mx-auto lg:mx-0 object-contain mix-blend-multiply drop-shadow-sm">
+            <h1 class="text-5xl lg:text-7xl font-extrabold text-brand-dark leading-tight tracking-tight">
+                Il primo <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-brand-accent">Assistente Personale</span> dedicato agli Automobilisti.
+            </h1>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                Prenditi cura di chi guida per la tua azienda. Un servizio semplice, personale e sempre disponibile direttamente su WhatsApp.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="#pricing" class="bg-brand-accent text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-400 transition-all duration-300 shadow-lg shadow-emerald-200 flex items-center justify-center gap-2">
+                    Scopri l'offerta <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#soluzione" class="bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-all duration-300 flex items-center justify-center gap-2">
+                    Come funziona
+                </a>
+            </div>
+        </div>
+        <!-- Hero Graphic (Abstract representation) -->
+        <div class="lg:w-1/2 w-full relative">
+            <div class="aspect-square max-w-md mx-auto relative">
+                <!-- Abstract blobs and phone shape -->
+                <div class="absolute inset-0 bg-brand-accent/20 rounded-full blur-3xl mix-blend-multiply"></div>
+                <div class="absolute inset-10 bg-brand-dark/5 rounded-[3rem] rotate-6 transform transition-transform hover:rotate-12 duration-500"></div>
+                <div class="absolute inset-10 bg-white border-8 border-slate-100 rounded-[3rem] shadow-2xl flex flex-col overflow-hidden">
+                    <div class="bg-emerald-500 text-white p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                            <i data-lucide="message-circle" class="text-emerald-500"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">OK Car</p>
+                            <p class="text-xs opacity-80">Sempre online</p>
+                        </div>
+                    </div>
+                    <div id="chat-scroll" class="p-5 bg-[#E5DDD5] flex-1 flex flex-col gap-4 overflow-y-auto custom-scrollbar relative">
+                        <!-- Messaggio 1: Pillola formativa -->
+                        <div class="text-center mt-1 mb-2"><span class="bg-[#D1C8C0] text-slate-600 text-[10px] px-3 py-1 rounded-lg uppercase tracking-wider font-semibold">Settimana Scorsa</span></div>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-sm">
+                            💡 <strong>Pillola Sicurezza:</strong> Sai che viaggiare con la pressione corretta degli pneumatici riduce i consumi del 3% e dimezza il rischio di aquaplaning? Controllala almeno una volta al mese! 🚗💨
+                        </div>
+
+                        <!-- Messaggio 2: Manutenzione Freni -->
+                        <div class="text-center mt-4 mb-2"><span class="bg-[#D1C8C0] text-slate-600 text-[10px] px-3 py-1 rounded-lg uppercase tracking-wider font-semibold">Lunedì</span></div>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-sm">
+                            Ciao! ⚠️ In base al tuo chilometraggio, è il momento di un check-up all'impianto frenante. È fondamentale per la tua sicurezza. Prenoto un controllo in officina?
+                        </div>
+                        <div class="bg-brand-accent/30 p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-sm self-end">
+                            Sì, per favore. Giovedì pomeriggio se possibile.
+                        </div>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-sm">
+                            Perfetto! 🗓️ Check-up freni prenotato per giovedì alle 15:00.
+                        </div>
+
+                        <!-- Messaggio 3: Revisione -->
+                        <div class="text-center mt-4 mb-2"><span class="bg-[#D1C8C0] text-slate-600 text-[10px] px-3 py-1 rounded-lg uppercase tracking-wider font-semibold">Oggi</span></div>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-sm">
+                            Ciao! 👋 Ricordati che la revisione della tua auto aziendale scade tra 15 giorni. Vuoi che prenoti un appuntamento nell'officina più vicina?
+                        </div>
+                        <div class="bg-brand-accent/30 p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-sm self-end">
+                            Sì, grazie! Domani mattina andrebbe benissimo.
+                        </div>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-sm">
+                            Fatto! 🗓️ Appuntamento confermato per domani alle 09:30. Ti ho inviato i dettagli via email.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. IL PROBLEMA (Urgency) -->
+    <section class="bg-brand-dark text-white py-24 relative overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-brand-accent opacity-10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-red-500 opacity-10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center space-y-8 mb-16">
+                <i data-lucide="alert-octagon" class="w-16 h-16 text-brand-accent mx-auto"></i>
+                <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+                    Guidare è l'attività più pericolosa che facciamo ogni giorno.
+                </h2>
+                <p class="text-xl text-slate-300 font-light">
+                    Non ci pensiamo, ma ogni volta che un dipendente sale in auto — per lavoro o per il tragitto casa-ufficio — si espone al rischio più alto della sua giornata.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+                <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-3xl text-center flex flex-col items-center justify-center">
+                    <span class="text-6xl font-black text-brand-accent mb-2">173.000+</span>
+                    <span class="text-lg text-slate-300">Incidenti con lesioni in Italia (2024)</span>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-3xl text-center flex flex-col items-center justify-center">
+                    <div class="flex items-center gap-2 mb-2 text-red-400">
+                        <i data-lucide="trending-up" class="w-10 h-10"></i>
+                        <span class="text-6xl font-black">+18,8%</span>
+                    </div>
+                    <span class="text-lg text-slate-300">Morti sul lavoro legate al tragitto in auto tra il 2023 e il 2024 (INAIL)</span>
+                </div>
+            </div>
+
+            <div class="text-center max-w-2xl mx-auto">
+                <p class="text-2xl font-medium text-slate-200">
+                    Non è un'emergenza lontana: è un rischio concreto che riguarda ogni azienda, ogni giorno.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. L'IMPATTO -->
+    <section class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Quando il rischio non è gestito, l'impatto è reale.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="building" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4">Sull'azienda</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Assenteismo improvviso, costi di sostituzione, integrazione salariale a carico del datore di lavoro, fermi operativi e penali contrattuali.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="scale" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4">Sulla conformità</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Il D.Lgs. 81/2008 impone la tutela del lavoratore anche nel rischio stradale. Un sinistro in itinere espone i vertici a responsabilità penale.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100 hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="globe" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4">Sulla società</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        <strong class="text-brand-dark">22 miliardi di euro l'anno:</strong> il costo sociale degli incidenti stradali in Italia (ACI/ANIA). Oltre un punto di PIL.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. LA SOLUZIONE & FUNZIONALITÀ -->
+    <section id="soluzione" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-brand-accent font-bold tracking-wider uppercase text-sm mb-2 block">La Soluzione</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-brand-dark mb-6">OK Car: un assistente personale per ogni dipendente.</h2>
+                <p class="text-xl text-slate-600">
+                    Un servizio su WhatsApp che si prende cura dell'auto di ogni dipendente — veicolo aziendale, NLT o privato. <strong class="text-brand-dark">Semplice, personale, sempre disponibile.</strong>
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature item -->
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex gap-4">
+                    <div class="text-brand-accent mt-1"><i data-lucide="search"></i></div>
+                    <p class="font-medium text-slate-700">Visura targa per identificare scadenze amministrative e manutentive</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex gap-4">
+                    <div class="text-brand-accent mt-1"><i data-lucide="calendar-clock"></i></div>
+                    <p class="font-medium text-slate-700">Promemoria automatici per scadenze (revisione, bollo, assicurazione, tagliando)</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex gap-4">
+                    <div class="text-brand-accent mt-1"><i data-lucide="wrench"></i></div>
+                    <p class="font-medium text-slate-700">Check-up periodici gratuiti inclusi</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex gap-4">
+                    <div class="text-brand-accent mt-1"><i data-lucide="map-pin"></i></div>
+                    <p class="font-medium text-slate-700">Prenotazione appuntamenti nell'officina più adatta all'esigenza del driver</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex gap-4">
+                    <div class="text-brand-accent mt-1"><i data-lucide="file-text"></i></div>
+                    <p class="font-medium text-slate-700">Supporto e gestione sinistri (burocrazia inclusa)</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex gap-4">
+                    <div class="text-brand-accent mt-1"><i data-lucide="folder-open"></i></div>
+                    <p class="font-medium text-slate-700">Archiviazione documenti e tracciamento spese</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex gap-4">
+                    <div class="text-brand-accent mt-1"><i data-lucide="bar-chart-3"></i></div>
+                    <p class="font-medium text-slate-700">Report sinistrosità per RSPP e documentazione INAIL OT23</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex gap-4">
+                    <div class="text-brand-accent mt-1"><i data-lucide="building-2"></i></div>
+                    <p class="font-medium text-slate-700">Gestione comunicazione con società NLT / noleggio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VALORE AGGIUNTO (FORMAZIONE) -->
+    <section class="py-12 pb-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-[3rem] p-8 md:p-12 shadow-lg flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+                <!-- Decor -->
+                <div class="absolute -right-10 -top-10 text-emerald-100 opacity-50 transform rotate-12">
+                    <i data-lucide="lightbulb" class="w-64 h-64"></i>
+                </div>
+                
+                <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm z-10 text-emerald-500">
+                    <i data-lucide="lightbulb" class="w-10 h-10"></i>
+                </div>
+                
+                <div class="z-10 text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-brand-dark mb-3">
+                        Ogni settimana, pillole formative su sicurezza stradale e sostenibilità ambientale.
+                    </h3>
+                    <p class="text-lg text-slate-700">
+                        Contenuti brevi e pratici inviati via WhatsApp: guida sicura, manutenzione preventiva, eco-driving, normativa. <strong class="text-brand-dark">Formazione continua che protegge i dipendenti e genera consapevolezza.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PRICING & CTA (Footer integrato) -->
+    <section id="pricing" class="bg-brand-dark text-white pt-24 pb-12 rounded-t-[3rem] mt-[-3rem] relative z-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800 text-slate-300 font-medium text-sm mb-8 border border-slate-700">
+                <i data-lucide="shield-check" class="w-4 h-4"></i> Proteggi il tuo team
+            </div>
+
+            <div class="flex justify-center items-baseline gap-2 mb-6 text-brand-accent">
+                <span class="text-3xl font-bold">€</span>
+                <span class="text-7xl font-black tracking-tighter">5,99</span>
+                <div class="text-left leading-tight">
+                    <span class="text-xl font-bold block">/mese</span>
+                    <span class="text-sm text-slate-400">per dipendente + IVA</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 text-slate-300 mb-12">
+                <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-accent"></i> Deducibile come costo di sicurezza (art. 51 TUIR)</div>
+                <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-accent"></i> Pilota 12 mesi</div>
+                <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-accent"></i> Nessun vincolo</div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-8 max-w-md mx-auto mb-16 shadow-2xl transform hover:-translate-y-1 transition-transform">
+                <h4 class="text-brand-dark font-bold text-xl mb-6">Inizia a proteggere la tua azienda</h4>
+                <a href="https://cal.com/matteo-okcar/15min" target="_blank" rel="noopener noreferrer" class="block w-full bg-brand-accent text-brand-dark text-center px-8 py-4 rounded-[2rem] font-bold text-lg hover:bg-emerald-400 transition-colors shadow-md mb-4 leading-tight">
+                    Prenota una Presentazione<br>di 15 minuti
+                </a>
+                <div class="space-y-3 text-slate-600 font-medium text-sm">
+                    <a href="mailto:matteo@illumidata.it" class="flex items-center justify-center gap-2 hover:text-brand-dark"><i data-lucide="mail" class="w-4 h-4"></i> matteo@illumidata.it</a>
+                    <a href="tel:+393284068513" class="flex items-center justify-center gap-2 hover:text-brand-dark"><i data-lucide="phone" class="w-4 h-4"></i> +39 328 406 8513</a>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 mt-16 text-left">
+                <p class="text-xs text-slate-500 max-w-3xl mx-auto leading-relaxed">
+                    <strong>Fonti e Riferimenti:</strong> ISTAT-ACI 2024 • INAIL Open Data 2024 • ANIA • Riferimenti normativi: D.Lgs. 81/2008, D.Lgs. 38/2000, Art. 51 TUIR. <br>
+                    OK CAR © 2026. Tutti i diritti riservati.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inizializzazione Icone -->
+    <script>
+        lucide.createIcons();
+        
+        // Auto-scroll della chat verso il basso al caricamento
+        window.addEventListener('load', () => {
+            const chatScroll = document.getElementById('chat-scroll');
+            if (chatScroll) {
+                chatScroll.scrollTop = chatScroll.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
